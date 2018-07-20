@@ -1,0 +1,43 @@
+from appfolder import appFlask
+from camera import take
+from flask import render_template, redirect
+
+config = { 'interval': (', 'battery_life': 100 }
+imageList = ['image1.jpg','image2.jpg','image3.jpg','image4.jpg','image5.jpg']
+
+@appFlask.route('/')
+@appFlask.route('/secondinterface')
+def secondinterface(): 
+    take(int(config["interval"]))
+    return render_template('secondinterface.html', title='Second Interface', config=config, image=imageList)
+	
+# Above this line is a sample use of a template without a form.
+
+from appfolder.forms import IntervalForm
+
+@appFlask.route('/template', methods=['GET', 'POST'])
+def template():
+    form = IntervalForm()
+    if form.validate_on_submit():
+        config["interval"] = form.interval.data
+        return redirect('/secondinterface')
+    return render_template('template.html', title='Update Interval', config=config, form=form)
+
+# Above this line is a sample use of a template with a form. 
+	
+# from flask_restful import Resource, Api, reqparse, abort
+# api = Api(app)
+
+# parser = reqparse.RequestParser()
+# parser.add_argument('name')
+
+# class FullList(Resource):
+#     def get(self):
+#         return user
+
+#     def post(self):
+#         args = parser.parse_args()
+#         user['username'] = args['name']
+#         return user['username'], 201
+
+# api.add_resource(FullList, '/devices')

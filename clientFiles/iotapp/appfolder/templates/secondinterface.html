@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>{{ title }}</title>
+		<style>
+			.smaller-img {
+				width: 40%;
+			}
+			.center {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Hello! An image has been taken.</h1>
+		<form action="home" method="post">
+			{{ form.hidden_tag() }}
+			<p>{{ form.filename.label() }}</p>
+			<p>{{ form.filename() }}</p>
+			<p>{{ form.submit() }}</p>
+		</form>
+	</body>
+</html>

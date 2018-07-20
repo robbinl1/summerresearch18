@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>{{ title }}</title>
+		<style>
+				* {
+					margin: 0;
+				}
+				body {
+					margin: 20px 80px;
+				}
+			</style>
+	</head>
+	<body>
+		<h1>Facial Recognition Body Camera</h1>
+		<p>Start your camera.</p>
+		<form action="home" method="post">
+			{{ form.hidden_tag() }}
+			<p>{{ form.filename.label() }}</p>
+			<p>{{ form.filename() }}</p>
+			<p>{{ form.submit() }}</p>
+		</form>
+	</body>
+</html>
